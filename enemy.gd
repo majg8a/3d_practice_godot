@@ -1,5 +1,5 @@
 extends CharacterBody3D
-const SPEED = 5.0
+const SPEED = 2.0
 
 const ACCELERATION = 10;
 const ROTATION_SPEED = 10.0;
@@ -19,33 +19,19 @@ enum BEHAVIOR {
 }
 
 var currentBehavior: BEHAVIOR = BEHAVIOR.ROAMING
+var behavior: Enemy_behavior = Enemy_behavior.new()
 
 func _ready():
-	detectionArea.area_entered.connect(targetDetection)
-	detectionArea.area_exited.connect(targetLost)
+	detectionArea.body_entered.connect(targetDetection)
+	detectionArea.body_exited.connect(targetLost)
 
 func _physics_process(delta):
-	if Input.is_action_just_pressed("ui_select") and is_on_floor():
-		velocity.y = JUMP_VELOCITY;
 	var direction =  Vector3.ZERO
-	
-#	for key in input_directions.keys():
-#		if Input.is_action_pressed(key):
-#			direction += input_directions.get(key)
-#			direction = direction.normalized()
-#			velocity.x = direction.x * SPEED
-#			velocity.z = direction.z * SPEED
-#	if direction == Vector3.ZERO:
-#		velocity.z = 0
-#		velocity.x = 0
-#	direction.x = Input.get_action_strength("ui_right") - Input.get_action_strength("ui_left")
-#	direction.z = Input.get_action_strength("ui_down") - Input.get_action_strength("ui_up")
-
 	match currentBehavior:
 		BEHAVIOR.ROAMING:
-			direction = Enemy_behavior.roaming(self)
+			direction = behavior.roaming(30)
 		BEHAVIOR.FOLLOWING:
-			direction = Enemy_behavior.linear_follow(self,target)
+			direction = behavior.linear_follow(self,target)
 	
 	velocity.y += gravity * delta
 	velocity.x = direction.x * SPEED

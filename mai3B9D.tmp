@@ -45,7 +45,7 @@ shape = SubResource("ConcavePolygonShape3D_pb38c")
 [node name="Camera3D" type="Camera3D" parent="Marker3D"]
 transform = Transform3D(1, 0, 0, 0, 0.866025, 0.5, 0, -0.5, 0.866025, 0, 3, 7)
 
-[node name="player" parent="." instance=ExtResource("1_6mlem")]
+[node name="Player" parent="." instance=ExtResource("1_6mlem")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
 
 [node name="enemy" parent="." instance=ExtResource("2_vhmol")]
