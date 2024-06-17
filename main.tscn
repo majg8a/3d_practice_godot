@@ -1,0 +1,52 @@
+[gd_scene load_steps=8 format=3 uid="uid://ix7yxsubgxkd"]
+
+[ext_resource type="PackedScene" uid="uid://i1q2tfs0lypp" path="res://player.tscn" id="1_6mlem"]
+[ext_resource type="PackedScene" uid="uid://hvma1mq1tvsl" path="res://enemy.tscn" id="2_vhmol"]
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_4wsix"]
+sky_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
+ground_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
+
+[sub_resource type="Sky" id="Sky_pc5hr"]
+sky_material = SubResource("ProceduralSkyMaterial_4wsix")
+
+[sub_resource type="Environment" id="Environment_4x23y"]
+background_mode = 2
+sky = SubResource("Sky_pc5hr")
+tonemap_mode = 2
+glow_enabled = true
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_dgksu"]
+size = Vector2(20, 20)
+
+[sub_resource type="ConcavePolygonShape3D" id="ConcavePolygonShape3D_pb38c"]
+data = PackedVector3Array(10, 0, 10, -10, 0, 10, 10, 0, -10, -10, 0, 10, -10, 0, -10, 10, 0, -10)
+
+[node name="main" type="Node3D"]
+transform = Transform3D(0.437774, 0, 0, 0, 0.437774, 0, 0, 0, 0.437774, 0, 0, 0)
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_4x23y")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(-0.866025, -0.433013, 0.25, 0, 0.5, 0.866025, -0.5, 0.75, -0.433013, 0, 0, 0)
+shadow_enabled = true
+
+[node name="Ground" type="MeshInstance3D" parent="."]
+mesh = SubResource("PlaneMesh_dgksu")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="Ground"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Ground/StaticBody3D"]
+shape = SubResource("ConcavePolygonShape3D_pb38c")
+
+[node name="Marker3D" type="Marker3D" parent="."]
+
+[node name="Camera3D" type="Camera3D" parent="Marker3D"]
+transform = Transform3D(1, 0, 0, 0, 0.866025, 0.5, 0, -0.5, 0.866025, 0, 3, 7)
+
+[node name="Player" parent="." instance=ExtResource("1_6mlem")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
+
+[node name="enemy" parent="." instance=ExtResource("2_vhmol")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, -5)
