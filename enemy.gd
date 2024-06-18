@@ -19,7 +19,7 @@ enum BEHAVIOR {
 }
 
 var currentBehavior: BEHAVIOR = BEHAVIOR.ROAMING
-var behavior: Enemy_behavior = Enemy_behavior.new()
+var behavior: Behavior = Behavior.new()
 
 func _ready():
 	detectionArea.body_entered.connect(targetDetection)

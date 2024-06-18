@@ -1,6 +1,5 @@
-class_name Enemy_behavior
+class_name Behavior
 
-var newDirections = Direction.PLANE_DIRECTIONS().duplicate()
 
 func linear_follow(enemy: Node3D,target: Node3D)-> Vector3:
 	var targetPosition: Vector3 = Vector3(target.position)
@@ -9,6 +8,7 @@ func linear_follow(enemy: Node3D,target: Node3D)-> Vector3:
 
 var currentIteration: int = 0
 var currentDirection = Vector3.ZERO
+var newDirections = Direction.PLANE_DIRECTIONS().duplicate()
 func roaming(repeat)-> Vector3:
 	newDirections.shuffle()
 	if(newDirections.size() == 0):

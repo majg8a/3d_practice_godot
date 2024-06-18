@@ -50,3 +50,9 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
 
 [node name="enemy" parent="." instance=ExtResource("2_vhmol")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, -5)
+
+[node name="enemy2" parent="." instance=ExtResource("2_vhmol")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.70674, 0.441527, -3.0812)
+
+[node name="enemy3" parent="." instance=ExtResource("2_vhmol")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.75167, 0.558475, 2.55945)
