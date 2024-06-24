@@ -12,14 +12,7 @@ var target: CharacterBody3D = null
 
 @onready var detectionArea: Area3D = $detectionArea
 
-enum BEHAVIOR {
-	STATIONARY,
-	ROAMING,
-	FOLLOWING
-}
-
-var currentBehavior: BEHAVIOR = BEHAVIOR.ROAMING
-var behavior: Behavior = Behavior.new()
+var currentBehavior = BEHAVIOR.ROAMING
 
 func _ready():
 	detectionArea.body_entered.connect(targetDetection)
