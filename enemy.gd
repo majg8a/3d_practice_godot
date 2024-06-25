@@ -6,13 +6,13 @@ const ROTATION_SPEED = 10.0;
 const JUMP_VELOCITY = 5.0;
 
 var target: CharacterBody3D = null
-
-@export var gravity = -10;
-@export var targetName = "player";
+var gravity = -10;
+var targetName = "player";
 
 @onready var detectionArea: Area3D = $detectionArea
 
 var currentBehavior = BEHAVIOR.ROAMING
+var behavior = Behavior.new()
 
 func _ready():
 	detectionArea.body_entered.connect(targetDetection)
