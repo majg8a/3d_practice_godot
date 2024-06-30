@@ -10,7 +10,7 @@ var currentIteration: int = 0
 var currentDirection = Vector3.ZERO
 var newDirections = Direction.PLANE_DIRECTIONS().duplicate()
 func roaming(repeat)-> Vector3:
-	newDirections.shuffle()
+#	newDirections.shuffle()
 	if(newDirections.size() == 0):
 		newDirections = Direction.PLANE_DIRECTIONS().duplicate()
 	if(repeat == currentIteration || currentIteration == 0):

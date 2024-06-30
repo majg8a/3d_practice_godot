@@ -36,7 +36,7 @@ func _physics_process(delta):
 	move_and_slide()
 
 func targetDetection(body: Node3D):
-	if (body.name == targetName):
+	if (is_instance_of(body,Player_)):
 		target = body
 		currentBehavior = BEHAVIOR.FOLLOWING
 		
