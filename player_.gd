@@ -10,6 +10,7 @@ const JUMP_VELOCITY = 5.0;
 func _ready():
 	Input.mouse_mode =  Input.MOUSE_MODE_CAPTURED
 	
+#camera angle
 func _input(event):
 	if event is InputEventMouseMotion:
 		rotate_y(deg_to_rad(-event.relative.x *.5))
@@ -27,26 +28,13 @@ func _physics_process(delta):
 
 	direction.x = Input.get_action_strength("ui_right") - Input.get_action_strength("ui_left")
 	direction.z = Input.get_action_strength("ui_down") - Input.get_action_strength("ui_up")
-	
-	if direction != Vector3.ZERO:
-		print("antes",direction)
-	
+	#player movement by camera rotation
 	direction = direction.rotated(Vector3.UP,rotation.y).normalized()
-	
-	if direction != Vector3.ZERO:
-		print("despues",direction)
-	
 	
 	velocity.y += gravity * delta
 	velocity.x = direction.x * SPEED
 	velocity.z = direction.z * SPEED
-	
-#	if direction != Vector3.ZERO:
-#		var target_rotation = atan2(-direction.x,-direction.z)
-#		rotation.y = lerp_angle(rotation.y,target_rotation,ROTATION_SPEED * delta)
-	move_and_slide()
 
-#func _process(delta):
-#	pivot.position = position
+	move_and_slide()
 	
 	
