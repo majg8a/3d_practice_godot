@@ -1,29 +1,46 @@
-[gd_scene load_steps=5 format=3 uid="uid://i1q2tfs0lypp"]
+[gd_scene load_steps=6 format=3 uid="uid://wfowst2l7p21"]
 
-[ext_resource type="Script" path="res://player.gd" id="1_vajeu"]
+[ext_resource type="Script" path="res://player.gd" id="1_4leam"]
+[ext_resource type="Script" path="res://pivot.gd" id="2_nsi8u"]
 
-[sub_resource type="CapsuleMesh" id="CapsuleMesh_dnwxq"]
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_4ebof"]
 radius = 0.2
 height = 1.0
 
-[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_4px4n"]
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_gnfob"]
 radius = 0.2
 height = 1.0
 
-[sub_resource type="CylinderMesh" id="CylinderMesh_xxrb3"]
+[sub_resource type="CylinderMesh" id="CylinderMesh_npx2a"]
 top_radius = 0.1
 bottom_radius = 0.05
 height = 0.2
 
-[node name="Player" type="CharacterBody3D"]
-script = ExtResource("1_vajeu")
+[node name="CharacterBody3D" type="CharacterBody3D"]
+script = ExtResource("1_4leam")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
-mesh = SubResource("CapsuleMesh_dnwxq")
+mesh = SubResource("CapsuleMesh_4ebof")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
-shape = SubResource("CapsuleShape3D_4px4n")
+shape = SubResource("CapsuleShape3D_gnfob")
+
+[node name="Node3D" type="Node3D" parent="."]
+script = ExtResource("2_nsi8u")
+
+[node name="SpringArm3D" type="SpringArm3D" parent="Node3D"]
+transform = Transform3D(1, 0, 0, 0, 0.922484, 0.386035, 0, -0.386035, 0.922484, 0.0478417, 1.1627, 2.87567)
+spring_length = 2.0
+
+[node name="Camera3D" type="Camera3D" parent="Node3D/SpringArm3D"]
+current = true
+fov = 50.0
 
 [node name="MeshInstance3D2" type="MeshInstance3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, -0.3)
-mesh = SubResource("CylinderMesh_xxrb3")
+mesh = SubResource("CylinderMesh_npx2a")
+
+[node name="RayCast3D" type="RayCast3D" parent="."]
+target_position = Vector3(0, 0, -30)
+debug_shape_custom_color = Color(0.709804, 0.643137, 0.835294, 1)
+debug_shape_thickness = 5

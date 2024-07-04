@@ -42,7 +42,7 @@ func _physics_process(delta):
 		self.queue_free()
 
 func targetDetection(body: Node3D):
-	if (is_instance_of(body,Player_)):
+	if (is_instance_of(body,Player)):
 		target = body
 		currentBehavior = BEHAVIOR.FOLLOWING
 		
