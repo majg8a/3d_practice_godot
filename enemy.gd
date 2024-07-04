@@ -19,10 +19,13 @@ func _ready():
 	detectionArea.body_exited.connect(targetLost)
 
 func _physics_process(delta):
+
 	var direction =  Vector3.ZERO
 	match currentBehavior:
 		BEHAVIOR.ROAMING:
-			direction = behavior.roaming(30)
+			var directionSet = Direction.PLANE_DIRECTIONS()
+			directionSet.shuffle()
+			direction = behavior.roaming(round(randf_range(20,30)),directionSet)
 		BEHAVIOR.FOLLOWING:
 			direction = behavior.linear_follow(self,target)
 	
@@ -34,6 +37,9 @@ func _physics_process(delta):
 		var target_rotation = atan2(-direction.x,-direction.z)
 		rotation.y = lerp_angle(rotation.y,target_rotation,ROTATION_SPEED * delta)
 	move_and_slide()
+	
+	if !is_on_floor():
+		self.queue_free()
 
 func targetDetection(body: Node3D):
 	if (is_instance_of(body,Player_)):
