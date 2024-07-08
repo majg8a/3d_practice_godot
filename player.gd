@@ -22,9 +22,8 @@ func _input(event):
 		rayCast.rotation.x = clamp(rayCast.rotation.x, deg_to_rad(-90), deg_to_rad(45))
 		
 	if Input.is_mouse_button_pressed(MOUSE_BUTTON_LEFT) and rayCast.is_colliding():
-		translate(rayCast.get_collision_point())
-#		global_position = rayCast.get_collision_point()
-#		global_position.y = global_position.y + .1 
+		global_position = rayCast.get_collision_point()
+		global_position.y = global_position.y + 0.3
 		
 		
 func _physics_process(delta):
