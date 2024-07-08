@@ -1,0 +1,30 @@
+[gd_scene load_steps=6 format=3 uid="uid://ecyamqqgsbno"]
+
+[ext_resource type="Script" path="res://ray_cast_scope.gd" id="1_i6d1o"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_do8lk"]
+size = Vector3(0.1, 0.1, 0.5)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_rum4g"]
+albedo_color = Color(0.235294, 0.290196, 1, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_uontt"]
+size = Vector3(0.5, 0.1, 0.1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ltaw1"]
+albedo_color = Color(0.235294, 0.290196, 1, 1)
+
+[node name="rayCastScope" type="RayCast3D"]
+target_position = Vector3(0, 0, -30)
+script = ExtResource("1_i6d1o")
+
+[node name="Node3D" type="Node3D" parent="."]
+
+[node name="rayend_v" type="MeshInstance3D" parent="Node3D"]
+mesh = SubResource("BoxMesh_do8lk")
+skeleton = NodePath("../..")
+surface_material_override/0 = SubResource("StandardMaterial3D_rum4g")
+
+[node name="rayend_h" type="MeshInstance3D" parent="Node3D"]
+mesh = SubResource("BoxMesh_uontt")
+surface_material_override/0 = SubResource("StandardMaterial3D_ltaw1")
